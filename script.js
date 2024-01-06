@@ -6,7 +6,7 @@ const bombcount = 5;
 function ranemoji() {
     let inneremoji = [];
     for(let i = 0; i < 25; i++) {
-        inneremoji.push('💎');
+        inneremoji.push('😀');
     }
 
     for(let i = 0; i < bombcount; i++) {
@@ -26,7 +26,7 @@ function create() {
     for(let i = 0; i < emoji.length; i++) {
         container.innerHTML += `
         <div class="content bg-gray-700">
-            <div id="hidden-emoji" class="hidden-content bg-slate-600 hover:bg-slate-500"></div>
+            <div id="hidden-emoji" class="flex items-center justify-center text-3xl font-bold text-white hidden-content bg-slate-600 hover:bg-slate-500"></div>
             <p class="check text-3xl" draggable="false">${emoji[i]}</p>
         </div>`;
     }
@@ -37,8 +37,12 @@ function play() {
 
     const hiddenemoji = document.querySelectorAll('#hidden-emoji');
     const check = document.querySelectorAll('.check');
+    const cl = document.querySelector('#clickleft');
+    const bc = document.querySelector('#bombcount');
 
     let count = 0;
+    cl.innerHTML = `Click left: ${hiddenemoji.length - bombcount}`;
+    bc.innerHTML = `Bomb count: ${bombcount}`;
 
     for(let i = 0; i < hiddenemoji.length; i++) {
         hiddenemoji[i].addEventListener('click', () => {
@@ -48,6 +52,7 @@ function play() {
                 location.reload();
             }
             count++;
+            cl.innerHTML = `Click left: ${hiddenemoji.length - bombcount - count}`;
             if(count == hiddenemoji.length - bombcount) {
                 alert('You Win!!!');
                 location.reload();
