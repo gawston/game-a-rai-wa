@@ -1,7 +1,19 @@
 const container = document.getElementById('con-content');
+const select = document.querySelector('select');
+
+const lostword = [
+    'เล่นได้แค่นี้จริงดิ',
+    'อ่อนเกิ๊นนนนนนนนนนนนน',
+    'ไปฝึกมาใหม่เหอะจริง',
+    'เคยชนะบ้างยัง',
+    'ว๊าาา แพ้อีกละ',
+    'เลิกเล่นเหอะ',
+    'กลับไปเล่นออดิชั่นเหอะ',
+    'เอาดี๊'
+]
 
 // set bomb
-const bombcount = 5;
+let bombcount = 5;
 
 function ranemoji() {
     let inneremoji = [];
@@ -13,8 +25,9 @@ function ranemoji() {
         let bomb = Math.floor(Math.random() * 25);
         if(inneremoji[bomb] == '💣') {
             bomb = Math.floor(Math.random() * 25);
+        } else {
+            inneremoji[bomb] = '💣';
         }
-        inneremoji[bomb] = '💣';
     }
 
     // console.log(inneremoji);
@@ -48,7 +61,8 @@ function play() {
         hiddenemoji[i].addEventListener('click', () => {
             hiddenemoji[i].style.display = 'none';
             if(check[i].innerHTML == '💣') {
-                alert('You Lost!');
+                let ranlost = Math.floor(Math.random() * lostword.length);
+                alert(lostword[ranlost]);
                 location.reload();
             }
             count++;
