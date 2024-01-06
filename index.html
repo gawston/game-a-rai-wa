@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game a rai wa</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.5.0/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style type="text/tailwindcss">
         @layer utilities {
@@ -24,37 +25,34 @@
                 height: 100%;
                 transition: all 0.2s;
             }
+
+            @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+            }
         }
     </style>
 </head>
 <body class="bg-gray-950">
+
     <div class="relative container mx-auto flex flex-col items-center justify-center h-screen scale-75 md:scale-100">
         <div class="flex gap-2">
             <h1 id="clickleft" class="text-white font-bold mb-4 bg-slate-700 px-2 rounded-md">Click Left: </h1>
             <h1 id="bombcount" class="text-white font-bold mb-4 bg-slate-700 px-2 rounded-md">Bomb count: </h1>
-            <!-- <select name="cars" id="cars" class="text-white font-bold mb-4 bg-slate-700 px-2 rounded-md">
-                <label for="cars" class="text-white font-bold">Choose a car:</label>
-                <option value="1">Easy</option>
-                <option value="3" selected>Normal</option>
-                <option value="5">Hard</option>
-                <option value="24">Huh ?</option>
-            </select>
-            <p class="text-white font-bold">ยังปรับไม่ได้ 😢</p> -->
         </div>
-
-        <!-- <div class="absolute w-56 h-24 flex flex-col gap-2 justify-center items-center bg-slate-300 rounded-lg shadow-xl z-10">
-            <p>You lost</p>
-            <button class="bg-slate-400 px-4 py-2 rounded-lg">Reset</button>
-        </div> -->
 
         <div id="con-content" class="grid grid-cols-5 gap-2 p-4 rounded-lg bg-gray-800">
             <!-- Items in here . . . . -->
 
-            <!-- template -->
-            <!-- <div class="content bg-gray-700">
-                <div class="hidden-content bg-slate-600 hover:bg-slate-500"></div>
-                <p class="text-3xl">💎</p>
-            </div> -->
         </div>
     </div>
 
