@@ -34,6 +34,7 @@ let bombcount = 5;
 // }
 
 function create() {
+    bombcount = parseInt(select.value);
     let inneremoji = [];
     for(let i = 0; i < 25; i++) {
         inneremoji.push('😀');
@@ -58,7 +59,35 @@ function create() {
 }
 
 function play() {
-    create();
+
+    bombcount = parseInt(select.value);
+    select.addEventListener('change', () => {
+        bombcount = parseInt(select.value);
+        container.innerHTML = '';
+        // create();
+        play();
+    })
+    let inneremoji = [];
+    for(let i = 0; i < 25; i++) {
+        inneremoji.push('😀');
+    }
+
+    for(let i = 0; i < bombcount; i++) {
+        let bomb = Math.floor(Math.random() * 25);
+        if(inneremoji[bomb] == '💣') {
+            bomb = Math.floor(Math.random() * 25);
+        } else {
+            inneremoji[bomb] = '💣';
+        }
+    }
+
+    for(let i = 0; i < inneremoji.length; i++) {
+        container.innerHTML += `
+        <div class="content bg-gray-700">
+            <div id="hidden-emoji" class="flex items-center justify-center text-3xl font-bold text-white hidden-content bg-slate-600 hover:bg-slate-500"></div>
+            <p class="check text-3xl" draggable="false">${inneremoji[i]}</p>
+        </div>`;
+    }
 
     const hiddenemoji = document.querySelectorAll('#hidden-emoji');
     const check = document.querySelectorAll('.check');
@@ -75,7 +104,7 @@ function play() {
             hiddenemoji[i].style.display = 'none';
             count++;
             cl.innerHTML = `Click count: ${count} / ${hiddenemoji.length - bombcount}`;
-            if(count == hiddenemoji.length - bombcount) {
+            if(count == hiddenemoji.length - bombcount && check[i] != '💣') {
                 container.innerHTML = '';
                 play();
                 count = 0;
