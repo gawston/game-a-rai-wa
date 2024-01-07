@@ -115,7 +115,7 @@ function play() {
                 container.innerHTML = '';
                 play();
                 count = 0;
-                cl.innerHTML = `Click count: ${count} / 20`;
+                cl.innerHTML = `Click count: ${count} / ${hiddenemoji.length - bombcount}`;
                 container.style.animation = 'shake 0.3s ease-in-out';
                 setTimeout(() => {
                     container.style.animation = 'none';
