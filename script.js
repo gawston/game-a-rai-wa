@@ -1,6 +1,8 @@
 const container = document.getElementById('con-content');
 const select = document.querySelector('select');
 
+const word = document.querySelector('#word');
+
 const lostword = [
     'เล่นได้แค่นี้จริงดิ',
     'อ่อนเกิ๊นนนนนนนนนนนนน',
@@ -9,7 +11,20 @@ const lostword = [
     'ว๊าาา แพ้อีกละ',
     'เลิกเล่นเหอะ',
     'กลับไปเล่นออดิชั่นเหอะ',
-    'เอาดี๊'
+    'เอาดี๊',
+    'ถามจริง 🤣',
+    'เด็กน้อยยังเก่งกว่า',
+    'ต้องให้สอนมั้ย ?',
+    'แหมแกก็',
+    'เอาจริงได้ยัง หรือได้แค่นี้',
+    'เห็นแล้วเครียดแทนเลยว่ะ',
+    'โหแกยังไม่เลิกเล่นอีกจริงดิ'
+]
+
+const winword = [
+    'เก่งจังเลยยยยย',
+    'เล่นมาตั้งนานพึ่งชนะเองเหรอ',
+    'เก่งมัก ✌️😂😀😰😢😥🤔🤔😘🧐🙍‍♂️👌🫥🧐😘👉💦'
 ]
 
 // set bomb
@@ -58,8 +73,9 @@ function create() {
     }
 }
 
-function play() {
 
+
+function play() {
     bombcount = parseInt(select.value);
     select.addEventListener('change', () => {
         bombcount = parseInt(select.value);
@@ -85,8 +101,16 @@ function play() {
         container.innerHTML += `
         <div class="content bg-gray-700">
             <div id="hidden-emoji" class="flex items-center justify-center text-3xl font-bold text-white hidden-content bg-slate-600 hover:bg-slate-500"></div>
-            <p class="check text-3xl" draggable="false">${inneremoji[i]}</p>
+            <p class="check text-3xl" id="cant-drag">${inneremoji[i]}</p>
         </div>`;
+    }
+
+    // set emoji cant select and drag
+    const cantdrag = document.querySelectorAll('#cant-drag');
+    for(let i = 0; i < cantdrag.length; i++) {
+        cantdrag[i].addEventListener('dragstart', (e) => {
+            e.preventDefault();
+        })
     }
 
     const hiddenemoji = document.querySelectorAll('#hidden-emoji');
@@ -104,13 +128,18 @@ function play() {
             hiddenemoji[i].style.display = 'none';
             count++;
             cl.innerHTML = `Click count: ${count} / ${hiddenemoji.length - bombcount}`;
+            // win
             if(count == hiddenemoji.length - bombcount && check[i] != '💣') {
                 container.innerHTML = '';
                 play();
                 count = 0;
                 cl.innerHTML = `Click count: ${count} / ${hiddenemoji.length - bombcount}`;
                 alert('You Win!!!');
+
+                let random = Math.floor(Math.random() * lostword.length);
+                word.innerHTML = winword[random];
             }
+            // lose
             if(check[i].innerHTML == '💣') {
                 container.innerHTML = '';
                 play();
@@ -120,10 +149,12 @@ function play() {
                 setTimeout(() => {
                     container.style.animation = 'none';
                 }, 1000)
+
+                let random = Math.floor(Math.random() * lostword.length);
+                word.innerHTML = lostword[random];
             }
         })
     }
 }
 
 play();
-

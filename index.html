@@ -13,9 +13,9 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                width: 5rem;
-                height: 5rem;
                 cursor: pointer;
+                width: 8vh;
+                height: 8vh;
                 border-radius: 0.375rem;
                 overflow: hidden;
             }
@@ -42,12 +42,20 @@
         }
     </style>
 </head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@100;200;300;400;500;600;700;800;900&display=swap');
+    
+    * {
+        font-family: 'Prompt', sans-serif;
+    }
+</style>
+
 <body class="bg-gray-950">
 
     <div class="relative container mx-auto flex flex-col items-center justify-center h-screen scale-75 md:scale-100">
         <div class="flex gap-2">
-            <h1 id="clickleft" class="text-white font-bold mb-4 bg-slate-700 px-2 rounded-md">Click Left: </h1>
-            <h1 id="bombcount" class="text-white font-bold mb-4 bg-slate-700 px-2 rounded-md">Bomb count: </h1>
+            <h1 id="clickleft" class="text-white font-semibold mb-4 bg-slate-700 px-2 rounded-md">Click Left: </h1>
+            <h1 id="bombcount" class="text-white font-semibold mb-4 bg-slate-700 px-2 rounded-md">Bomb count: </h1>
             <select id="difficulty" class="text-white font-bold mb-4 bg-slate-700 px-2 rounded-md">
                 <option value="2">Easy</option>
                 <option value="5" selected>Normal</option>
@@ -59,6 +67,11 @@
             <!-- Items in here . . . . -->
 
         </div>
+
+        <div class="flex gap-2 mt-4">
+            <h1 id="word" class="text-white font-semibold mb-4 bg-slate-700 px-2 rounded-md">เกมอะไรวะ</h1>
+        </div>
+
     </div>
 
     <script src="script.js"></script>
